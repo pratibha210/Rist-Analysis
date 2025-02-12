@@ -6,16 +6,15 @@ import RiskMeter from "./RiskMeter";
 import RiskChart from "./RiskChart";
 
 const RiskDetails = () => {
-  const riskData = useSelector((state) => state.risk.data);
-  const [data, setData] = useState([]);
+  const riskData = useSelector((state) => state.risk.data || []);
 
-  useEffect(() => {
-    setData(riskData);
-  }, [riskData]);
-
-
-  console.log(riskData,"riskData");
-  
+  if (!riskData || riskData.length === 0) {
+    return (
+      <Typography variant="h6" style={{ textAlign: "center", marginTop: "20px" }}>
+        No matching risk data found.
+      </Typography>
+    );
+  }
 
   return (
     <motion.div 
@@ -48,7 +47,7 @@ const RiskDetails = () => {
         )}
 
         {/* Animated Risk Details */}
-        {data?.map((item, index) => (
+        {riskData?.map((item, index) => (
           <motion.div 
             key={index} 
             initial={{ opacity: 0, x: -20 }} 

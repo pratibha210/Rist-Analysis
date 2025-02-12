@@ -19,29 +19,29 @@ const RiskMeter = () => {
       <Paper
         elevation={6}
         sx={{
-          background: "linear-gradient(135deg, #ff6f61, #ffcc00)",
-          color: "white",
-          display: "inline-block",
-          borderRadius: "50%",
-          marginBottom: "20px",
-          padding: "20px",
-          transition: "transform 0.3s ease-in-out",
-          position: "relative",
-          "&:hover": {
-            transform: "scale(1.03)",
-            boxShadow: "0px 4px 20px rgba(255, 165, 0, 0.5)",
-          },
-        }}
+                background: "linear-gradient(135deg, #ff6f61, #ffcc00)",
+                color: "white",
+                display: "inline-block",
+                borderRadius: "50%",
+                marginBottom: "20px",
+                padding: "20px",
+                transition: "transform 0.3s ease-in-out",
+                position: "relative",
+                "&:hover": {
+                  transform: "scale(1.03)",
+                  boxShadow: "0px 4px 20px rgba(255, 165, 0, 0.5)",
+                },
+              }}
       >
-        <CircularProgress
-          variant="determinate"
-          value={riskScore}
-          size={140}
-          thickness={5}
-          sx={{ color: "white" }}
+        <CircularProgress 
+          variant="determinate" 
+          value={riskScore} 
+          size={140} 
+          thickness={5} 
+          sx={{ color: "white" }} 
         />
-        <Typography
-          variant="h6"
+        <Typography 
+          variant="h6" 
           sx={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontWeight: "bold" }}
         >
           {riskScore}%

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const dummyData = [
+export const dummyData = [
   {
     source_address: "1HQ3Go3ggs8pFnXuHVHRytPCq5fGG8Hbhx",
     risk_score: "89%",
@@ -92,21 +92,26 @@ const dummyData = [
     ],
   },
 ];
-
 const riskSlice = createSlice({
   name: "risk",
-  initialState: { data: null },
+  initialState: { data: dummyData },
   reducers: {
     fetchRiskData: (state, action) => {
-      const searchTerm = action.payload.toLowerCase();
-      const foundData = dummyData.filter(
-        (item) => item.source_address.toLowerCase().includes(searchTerm) // Search by source_address
-      );
-
-      state.data = foundData.length > 0 ? foundData : null;
+      const searchTerm = action.payload?.toLowerCase();
+      if (!searchTerm) {
+        state.data = dummyData; 
+      } else {
+        const foundData = dummyData.find((item) =>
+          item.source_address.toLowerCase() === searchTerm
+        );
+        state.data = foundData ? [foundData] : []; 
+      }
+    },
+    resetRiskData: (state) => {
+      state.data = dummyData; 
     },
   },
 });
 
-export const { fetchRiskData } = riskSlice.actions;
+export const { fetchRiskData, resetRiskData } = riskSlice.actions;
 export default riskSlice.reducer;
